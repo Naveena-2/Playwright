@@ -10,32 +10,11 @@ test('Employee Personal Details', async ({ page }) => {
      await expect(
         page.getByRole('heading', { name: 'Personal Details' })
     ).toBeVisible();
-   // await Employee Full Name.click();
-   // Verify Personal Details
-await expect(
-    page.getByRole('heading', { name: 'Personal Details' })
-).toBeVisible();
-
-// First Name
-//await page.getByPlaceholder('First Name').fill('Naveena');
-
-// Employee ID
-//await page.getByLabel('Employee Id').fill('10509');
-
-// Other ID
-//await page.getByLabel('Other Id').fill('56789');
-// First Name
-await page.getByPlaceholder('First Name').fill('Naveena');
-
-// Employee ID
-await page.locator('label:has-text("Employee Id")').locator('..').locator('input').fill('10509');
-
-// Other ID
-await page.locator('label:has-text("Other Id")').locator('..').locator('input').fill('56789');
-    //await page.getByLabel('Employee Full Name').fill('Naveena');
-
-    //await page.getByLabel('Employee Id').fill('10509');
-    //await page.getByLabel('Other Id').fill('56789');
+   
+    await expect(page.getByRole('heading', { name: 'Personal Details' })).toBeVisible();
+    await page.getByPlaceholder('First Name').fill('Naveena');
+    await page.locator('label:has-text("Employee Id")').locator('..').locator('input').fill('10509');
+    await page.locator('label:has-text("Other Id")').locator('..').locator('input').fill('56789');
 
     await page.getByLabel("Driver's License Number").fill('20078');
     await page.getByLabel('License Expiry Date').fill('2028-06-10');
