@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://qademo.com/');
+  await page.getByTestId('navbar-signin-link').getByRole('button', { name: 'Sign in' }).click();
+  await page.getByTestId('username-input').click();
+  await page.getByTestId('username-input').fill('standard_user');
+  await page.getByTestId('password-input').click();
+  await page.getByTestId('password-input').fill('standard123');
+  await page.getByTestId('login-submit-button').click();
+  await page.getByTestId('catalog-heading').click();
+  await expect(page.getByTestId('catalog-heading')).toBeVisible();
+  await page.getByTestId('product-link-4').click();
+  await expect(page.getByTestId('product-detail-name')).toBeVisible();
+  await expect(page.getByTestId('product-detail-price')).toContainText('$159.99');
+  await page.getByTestId('product-add-to-cart-button').click();
+  await page.getByTestId('product-view-cart-button').click();
+  await page.getByTestId('proceed-to-checkout-button').click();
+  await expect(page.getByTestId('checkout-heading')).toBeVisible();
+  await page.getByTestId('checkout-first-name').click();
+  await page.getByTestId('checkout-first-name').fill('sheela');
+  await page.getByTestId('checkout-last-name').click();
+  await page.getByTestId('checkout-last-name').fill('r');
+  await page.getByTestId('checkout-address').click();
+  await page.getByTestId('checkout-address').fill('23/7h coimbatore');
+  await page.getByTestId('checkout-card-number').click();
+  await expect(page.getByTestId('payment-heading')).toBeVisible();
+  await page.getByTestId('checkout-card-number').click();
+  await page.getByTestId('checkout-card-number').fill('6678 9525 2762 5382');
+  await page.getByTestId('checkout-expiry').click();
+  await page.getByTestId('checkout-cardholder-name').fill('credit card');
+  await page.getByTestId('checkout-expiry').click();
+  await page.getByTestId('checkout-expiry').fill('12/28');
+  await page.getByTestId('place-order-button').click();
+  await page.getByTestId('navbar-logout-button').click();
+});
