@@ -7,8 +7,7 @@ test('Employee Personal Details', async ({ page }) => {
     await page.locator('[type="submit"]').click();
 
      await page.getByText('My Info').click();
-     await expect(
-        page.getByRole('heading', { name: 'Personal Details' })
+     await expect(page.getByRole('heading', { name: 'Personal Details' })
     ).toBeVisible();
    
     await expect(page.getByRole('heading', { name: 'Personal Details' })).toBeVisible();

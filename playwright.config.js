@@ -15,7 +15,9 @@ const config = defineConfig({
     use: {
         browserName: 'chromium',
         //channel: 'msedge',
-        headless: true,
+        headless: false,
+        screenshot: 'on',
+        trace:'on'
     },
 });
 

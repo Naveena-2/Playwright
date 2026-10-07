@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Table Practice</title>
+</head>
+
+<body>
+
+    <h1>Employee Details</h1>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>John</td>
+                <td>25</td>
+                <td>Tester</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>David</td>
+                <td>30</td>
+                <td>Developer</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Naveena</td>
+                <td>24</td>
+                <td>Tester</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function () {
+                if (this.textContent.trim() === 'Delete') {
+                    this.closest('tr').remove();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

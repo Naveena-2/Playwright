@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://rahulshettyacademy.com/angularpractice/');
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="email"]').fill('naveenatest123@gmail.com');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Password' }).fill('P');
+  await page.getByRole('textbox', { name: 'Password' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Password' }).fill('Password@1234');
+  await page.locator('form input[name="name"]').click();
+  await page.locator('form input[name="name"]').press('CapsLock');
+  await page.locator('form input[name="name"]').fill('N');
+  await page.locator('form input[name="name"]').press('CapsLock');
+  await page.locator('form input[name="name"]').fill('Ns');
+  await page.locator('div').nth(1).click();
+  await page.getByRole('checkbox', { name: 'Check me out if you Love' }).check();
+  await page.getByRole('radio', { name: 'Employed' }).check();
+  await page.locator('input[name="bday"]').fill('2026-09-09');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole('link', { name: 'Shop' }).click();
+  await page.locator('app-card').filter({ hasText: 'iphone X $24.99 Lorem ipsum' }).getByRole('button').click();
+  await page.getByText('Checkout ( 1 ) (current)').click();
+  await page.getByRole('textbox', { name: 'Please choose your delivery' }).click();
+  await page.getByRole('textbox', { name: 'Please choose your delivery' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please choose your delivery' }).fill('I');
+  await page.getByRole('textbox', { name: 'Please choose your delivery' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please choose your delivery' }).fill('India');
+  await page.getByText('I agree with the term &').click();
+  await page.getByRole('checkbox', { name: 'I agree with the term &' }).check();
+  await page.getByText('India').click();
+  await page.getByText('India').click();
+  await expect(page.locator('app-checkout')).toContainText('Please choose your delivery location. Then click on purchase button');
+  await expect(page.getByRole('textbox', { name: 'Please choose your delivery' })).toHaveValue('India');
+});

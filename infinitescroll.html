@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Infinite Scroll Practice</title>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        .employee {
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid black;
+        }
+
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Employee List</h1>
+
+    <div id="employeeList"></div>
+
+    <div id="loading">
+        Loading more employees...
+    </div>
+
+    <script>
+
+        const pages = [
+            [
+                ["John", "Tester"],
+                ["David", "Developer"],
+                ["Naveena", "Tester"]
+            ],
+            [
+                ["Rahul", "Developer"],
+                ["Priya", "Tester"],
+                ["Arun", "Manager"]
+            ],
+            [
+                ["Kiran", "Tester"],
+                ["Anu", "Developer"],
+                ["Ravi", "Manager"]
+            ]
+        ];
+
+        let currentPage = 0;
+
+        function loadEmployees() {
+
+            const employeeList =
+                document.getElementById("employeeList");
+
+            pages[currentPage].forEach(employee => {
+
+                const div = document.createElement("div");
+
+                div.className = "employee";
+
+                div.innerHTML = `
+                    <strong>${employee[0]}</strong>
+                    <br>
+                    Role: ${employee[1]}
+                `;
+
+                employeeList.appendChild(div);
+            });
+
+            currentPage++;
+        }
+
+        function loadMore() {
+
+            if (currentPage >= pages.length) {
+                return;
+            }
+
+            document.getElementById("loading").style.display = "block";
+
+            setTimeout(() => {
+
+                loadEmployees();
+
+                document.getElementById("loading").style.display = "none";
+
+            }, 1000);
+        }
+
+        // Load first set of employees
+        loadEmployees();
+
+        // Detect scrolling
+        window.addEventListener("scroll", () => {
+
+            if (
+                window.innerHeight + window.scrollY
+                >= document.body.offsetHeight - 100
+            ) {
+                loadMore();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

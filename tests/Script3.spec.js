@@ -3,7 +3,6 @@ const { test, expect } = require('@playwright/test');
 test('Save Quotation', async ({ page }) => {
 
     await page.goto('https://demo.guru99.com/insurance/v1/index.php');
-
     await page.locator('#email').fill('naveenatest@gmail.com');
     await page.locator('#password').fill('Password@123');
     await page.locator('input[name="submit"]').click();

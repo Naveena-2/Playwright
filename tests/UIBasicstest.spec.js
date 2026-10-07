@@ -17,8 +17,7 @@ test('Browser Context playwright test', async ({ browser }) => {
     await password.fill('learning');
     await signIn.click();
 
-    await expect(page.locator("[style*='block']"))
-        .toContainText('Incorrect');
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
 
     // Valid login
     await userName.fill('rahulshettyacademy');

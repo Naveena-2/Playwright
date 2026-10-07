@@ -1,12 +1,10 @@
 const { test, expect } = require('@playwright/test');
 
 test('Registration and Login', async ({ page }) => {
-
     
     const email = 'naveenatest@gmail.com';
     const password = 'Password@123';
 
-    
     await page.goto('https://demo.guru99.com/insurance/v1/index.php');
     await expect(page).toHaveTitle(/Insurance/i);
     await page.locator('a[href="register.php"]').click();

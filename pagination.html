@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pagination Practice</title>
+</head>
+
+<body>
+
+    <h1>Employee List</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+
+        <tbody id="employeeTable">
+        </tbody>
+    </table>
+
+    <br>
+
+    <!-- <button id="first">First</button>
+    <button id="previous">Previous</button>
+    <span id="pageNumber">Page 1</span>
+    <button id="next">Next</button>
+ -->
+    <button id="first">First</button>
+    <button id="previous">Previous</button>
+
+    <button class="page-number" data-page="1">1</button>
+    <button class="page-number" data-page="2">2</button>
+    <button class="page-number" data-page="3">3</button>
+
+    <span id="pageNumber">Page 1</span>
+
+    <button id="next">Next</button>
+    <button id="last">Last</button>
+    <script>
+
+        const pages = [
+            [
+                ["John", "Tester"],
+                ["David", "Developer"],
+                ["Naveena", "Tester"]
+            ],
+
+            [
+                ["Rahul", "Developer"],
+                ["Priya", "Tester"],
+                ["Arun", "Manager"]
+            ],
+
+            [
+                ["Kiran", "Tester"],
+                ["Anu", "Developer"],
+                ["Ravi", "Manager"]
+            ]
+        ];
+
+        let currentPage = 0;
+
+        function displayPage() {
+
+            const table = document.getElementById("employeeTable");
+
+            table.innerHTML = "";
+
+            pages[currentPage].forEach(employee => {
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${employee[0]}</td>
+                    <td>${employee[1]}</td>
+                `;
+
+                table.appendChild(row);
+            });
+
+            document.getElementById("pageNumber").textContent =
+                `Page ${currentPage + 1}`;
+
+            document.getElementById("previous").disabled =
+                currentPage === 0;
+
+            document.getElementById("next").disabled =
+                currentPage === pages.length - 1;
+        }
+
+        document.getElementById("next").addEventListener("click", () => {
+
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                displayPage();
+            }
+
+        });
+
+        document.getElementById("previous").addEventListener("click", () => {
+            // current page = 0 , then page =1
+            if (currentPage > 0) {
+                currentPage--;
+                displayPage();
+            }
+
+        });
+
+        document.getElementById("first").addEventListener("click", () => {
+        currentPage = 0;
+        displayPage();
+});
+
+document.querySelectorAll('.page-number').forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        currentPage = Number(button.dataset.page) - 1;
+
+        displayPage();
+
+    });
+    document.getElementById("last").addEventListener("click", () => {
+    currentPage = pages.length - 1;
+    displayPage();
+});
+});
+
+
+
+
+
+        displayPage();
+
+    </script>
+
+</body>
+</html>
